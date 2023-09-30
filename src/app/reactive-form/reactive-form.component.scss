@@ -1,0 +1,18 @@
+h1{
+    color: var(--color-one);
+    font-size: 6rem;
+    font-weight: 900;
+}
+form{
+    background-color: var(--color-tree);
+    height: 60vh;
+    padding: 70px;
+    border-radius: 15px;
+    color: var(--color-one);
+    overflow-y: scroll;
+
+    .btn-primary{
+        background-color: var(--color-two);
+        border-color: transparent;
+    }
+}

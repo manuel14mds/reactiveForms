@@ -1,0 +1,15 @@
+*{
+    --color-one:#EEEEEE;
+    --color-two:#64CCC5;
+    --color-tree:#176B87;
+    --color-four:#053B50;
+}
+main{
+    background-color: var(--color-two);
+    background-image: linear-gradient(160deg, var(--color-two) 0%, var(--color-tree) 100%);
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+    display: grid;
+    place-items: center;
+}
