@@ -1,53 +1,94 @@
 <div class="container">
     <h1 class="title">Sign Up</h1>
 
-    <form class="row">
+    <form class="row" [formGroup]="userForm" (ngSubmit)="onSubmit()">
         <div class="col-md-6">
             <label for="inputFirstName" class="form-label">First name</label>
-            <input type="text" class="form-control form-control-sm" id="inputFirstName" >
+            <input type="text" class="form-control form-control-sm" id="inputFirstName"
+            formControlName="first_name"
+            >
         </div>
         <div class="col-md-6">
             <label for="inputLastName" class="form-label">Last name</label>
-            <input type="text" class="form-control form-control-sm" id="inputLastName" >
+            <input type="text" class="form-control form-control-sm" id="inputLastName" 
+            formControlName="last_name"
+            >
         </div>
         <div class="col-md-6">
             <label for="inputUsername" class="form-label">Username</label>
-            <input type="text" class="form-control form-control-sm" id="inputUsername" >
+            <input type="text" class="form-control form-control-sm" id="inputUsername" 
+            formControlName="username"
+            [ngClass]="{'is-invalid': userForm.controls['username'].touched && userForm.controls['username'].invalid}"
+            >
+            <div class="invalid-feedback">
+                Username required
+            </div>
         </div>
         <div class="col-md-6">
             <label for="inputAge" class="form-label">Age</label>
-            <input type="number" class="form-control form-control-sm" id="inputAge" >
+            <input type="number" class="form-control form-control-sm" id="inputAge" 
+            formControlName="age"
+            [ngClass]="{'is-invalid': !validateAge() }"
+            >
+            <div class="invalid-feedback">
+                The age should be a number between 1 to 110
+            </div>
         </div>
         <div class="col-md-6">
             <label for="inputCountry" class="form-label">Country</label>
-            <input type="text" class="form-control form-control-sm" id="inputCountry" >
+            <input type="text" class="form-control form-control-sm" id="inputCountry" 
+            formControlName="country"
+            >
         </div>
         <div class="col-md-6">
             <label for="inputCity" class="form-label">City</label>
-            <input type="text" class="form-control form-control-sm" id="inputCity" >
+            <input type="text" class="form-control form-control-sm" id="inputCity" 
+            formControlName="city"
+
+            >
         </div>
         <div class="col-md-6">
             <label for="InputEmail1" class="form-label">Genre</label>
-            <select class="form-select form-select-sm" aria-label="Default select example">
-                <option selected>Select one</option>
+            <select class="form-select form-select-sm" aria-label="Default select example" formControlName="genre">
                 <option value="male">Male</option>
                 <option value="female">Female</option>
             </select>
         </div>
         <div class="col-md-6">
             <label for="InputEmail1" class="form-label">Email address</label>
-            <input type="email" class="form-control form-control-sm" id="InputEmail1" aria-describedby="emailHelp">
+            <input type="email" class="form-control form-control-sm" id="InputEmail1" aria-describedby="emailHelp"
+            formControlName="email"
+            [ngClass]="{'is-invalid': userForm.controls['email'].invalid && userForm.controls['email'].touched}"
+            required
+            >
+            <div class="invalid-feedback">
+                Please type a valid email.
+            </div>
         </div>
         <div class="col-md-6">
             <label for="InputPassword1" class="form-label">Password</label>
-            <input type="password" class="form-control form-control-sm" id="InputPassword1">
+            <input type="password" class="form-control form-control-sm" id="InputPassword1"
+            formControlName="psw1"
+            [ngClass]="{'is-invalid': userForm.controls['psw1'].touched && userForm.controls['psw1'].invalid}"
+            required
+            >
+            <div class="invalid-feedback">
+                Field required.
+            </div>
         </div>
         <div class="col-md-6">
             <label for="InputPassword2" class="form-label">Repeat password</label>
-            <input type="password" class="form-control form-control-sm" id="InputPassword1">
+            <input type="password" class="form-control form-control-sm" id="InputPassword2"
+            formControlName="psw2"
+            [ngClass]="{'is-invalid': pswValidator()}"
+            [disabled]="disablePswInput()"
+            >
+            <div class="invalid-feedback">
+                please the same password.
+            </div>
         </div>
         <div class="col-6">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button [disabled]="activateSubmitBtn()" type="submit" class="btn btn-primary">Submit</button>
         </div>
 
     </form>
@@ -56,6 +97,8 @@
 <div class="alert alert-success" role="alert">
     <h4 class="alert-heading">Well done!</h4>
     <p>You have been registered! You have filled all required fields correctly.</p>
+    <p>{{userForm.value | json}}</p>
+    <p>validatorpsw value: {{pswValidator()}}</p>
     <hr>
-    <p class="mb-0">Name:  , Username:  , Age:  , Country:  , City:  , Genre:  , Email: </p>
+    <p class="mb-0">{{ user | json }}</p>
 </div>
