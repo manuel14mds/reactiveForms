@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ReactiveFormComponent {
     userForm: FormGroup;
     user: object = {};
+    sent=false
 
     constructor(private formBuilder: FormBuilder) {
 
@@ -97,7 +98,12 @@ export class ReactiveFormComponent {
         }
 
         this.user = obj;
+        this.sent = true
     }
 
+    closeBtn():void{
+        this.sent = false
+        this.userForm.reset()
+    }
 
 }

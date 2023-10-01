@@ -94,11 +94,16 @@
     </form>
 </div>
 <br>
-<div class="alert alert-success" role="alert">
-    <h4 class="alert-heading">Well done!</h4>
+<div class="alert alert-success" role="alert" *ngIf="sent; else inactivoTemplate" >
+    <div class="row"> 
+        <h4 class="alert-heading col-11">Well done!</h4>
+        <button type="button" class="btn-close col-1" aria-label="Close" (click)="closeBtn()"></button>
+    </div>
     <p>You have been registered! You have filled all required fields correctly.</p>
-    <p>{{userForm.value | json}}</p>
-    <p>validatorpsw value: {{pswValidator()}}</p>
     <hr>
-    <p class="mb-0">{{ user | json }}</p>
+    <ul class="userBox">
+        <li *ngFor="let prop of user | keyvalue" class="userProp"> <span>{{prop.key}}:</span> {{prop.value}}</li>
+    </ul>
 </div>
+<ng-template #inactivoTemplate>
+</ng-template>

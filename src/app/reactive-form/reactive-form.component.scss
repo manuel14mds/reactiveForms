@@ -16,3 +16,17 @@ form{
         border-color: transparent;
     }
 }
+
+.userBox{
+    display: flex;
+    gap:10px;
+    justify-content: center;
+
+    .userProp{
+        list-style: none;
+
+        span{
+            text-transform: uppercase;
+        }
+    }
+}
